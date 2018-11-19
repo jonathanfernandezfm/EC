@@ -1,0 +1,30 @@
+<main+101>     lea    0x2008a1(%rip),%rsi        # 0x601068 <password>
+<main+108>     callq  0x4005d0 <strncmp@plt> 
+
+En rsi se mueve la password almacenada en 0x601068
+
+x/1sb $rsi
+0x601068 <password>:    "latarara\n"
+
+Password: latarara
+
+<main+234>     add    $0x8,%eax
+<main+237>     cmp    0x200812(%rip),%eax        # 0x601060 <passcode>
+
+(gdb) x/1wu 0x601060
+0x601060 <passcode>:    2026
+
+el passcode es 2026 - 8 (ya que se le añade 8 antes de comparar)
+
+Passcode: 2018
+
+SOLUCION
+	PASSWORD: latarara
+	PIN: 2018
+
+CAMBIO DE CONTRASEÑAS
+
+Como la contraseña esta en 0x601068, modificamos esta direccion y ponemos lo que deseemos, en mi casi \n para que permita no añadir ninguna contraseña.
+
+set {char[3]}0x601068="\n"
+

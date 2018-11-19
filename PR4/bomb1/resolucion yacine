@@ -1,0 +1,15 @@
+En la llamada strcmp: 	rdi es el primer argumento, en este caso la contraseña introducida: atd (asd)
+						rsi es el segundo argumento, en este caso la contraseña de la bomba: tvpbc (???)
+La contraseña introducida ha sido modificada con el siguiente algoritmo:
+	- Suma 1 al 2º y 4º caracter (asd -> atd / abcdefghijk -> acceefghijk)
+Por lo que la contraseña es: tvpbc -> tupac
+
+Antes de la comparacion de pins, al introducido se le añade +4 (12345678 + 4 = 12345682)
+
+cmp    0x2007ca(%rip),%eax        # 0x601068 <encriptado>
+
+encriptado = 4 por lo que el pin es 0 (4-4)
+
+SOLUCION:
+	PASSWORD: tupac (0x60106c)
+	PIN: 0 (0x601068)
